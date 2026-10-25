@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "GPT Library Manager",
+  "repository": "mlookhere/gpt-libman",
+  "status": "developing",
+  "agent": {
+    "provider": "chatgpt",
+    "tool": "github-mcp",
+    "exclusive": true,
+    "github_source_of_truth": true,
+    "background_worker": false
+  },
+  "branches": {
+    "integration": "dev",
+    "production": "main",
+    "work_prefix": "work"
+  },
+  "required_checks": {
+    "integration": [
+      "PR metadata",
+      "Fast deterministic gates",
+      "PR test/build gates",
+      "Dependency audit",
+      "Workflow policy"
+    ],
+    "production": [
+      "Release metadata",
+      "Full regression and production build",
+      "Workflow policy"
+    ],
+    "require_completed": true,
+    "zero_is_success": false
+  },
+  "commands": {
+    "fast": "node ci/run.mjs fast",
+    "pr": "node ci/run.mjs pr",
+    "release": "node ci/run.mjs release",
+    "nightly": "node ci/run.mjs nightly",
+    "audit": "node ci/run.mjs audit"
+  }
+}

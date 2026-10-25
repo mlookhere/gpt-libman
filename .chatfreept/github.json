@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "branches": {
+    "integration": "dev",
+    "production": "main"
+  },
+  "work_prefix": "work/",
+  "control_issue_title": "[CONTROL] Current repository state",
+  "required_checks": {
+    "integration": [
+      "PR metadata",
+      "Fast deterministic gates",
+      "PR test/build gates",
+      "Dependency audit",
+      "Workflow policy"
+    ],
+    "production": [
+      "Release metadata",
+      "Full regression and production build",
+      "Workflow policy"
+    ]
+  },
+  "policy": {
+    "no_zero_tests": true,
+    "no_missing_checks": true,
+    "merge_requires_current_head_success": true,
+    "production_release_only_from": "dev",
+    "no_autonomous_ci_agent": true
+  }
+}
