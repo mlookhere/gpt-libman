@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "stages": {
+    "fast": [
+      "typecheck",
+      "workflow-policy"
+    ],
+    "pr": [
+      "typecheck",
+      "build",
+      "unit",
+      "browser",
+      "package"
+    ],
+    "release": [
+      "typecheck",
+      "build",
+      "unit",
+      "browser",
+      "audit",
+      "package"
+    ],
+    "nightly": [
+      "typecheck",
+      "build",
+      "unit",
+      "browser",
+      "audit",
+      "package",
+      "workflow-policy"
+    ],
+    "audit": [
+      "audit"
+    ]
+  },
+  "commands": {
+    "typecheck": "npm run typecheck",
+    "build": "npm run build",
+    "unit": "node ci/run-tests.mjs",
+    "browser": "node ci/run-browsers.mjs",
+    "audit": "npm audit --audit-level=high",
+    "package": "node ci/package.mjs",
+    "workflow-policy": "node ci/workflow-policy.mjs"
+  }
+}
